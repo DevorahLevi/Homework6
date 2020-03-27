@@ -27,6 +27,7 @@ public class LinkedList<T> {
     }
 
     private Node head = null;
+    Node endNode = null;
 
     public LinkedList() {
         // nothing
@@ -34,13 +35,15 @@ public class LinkedList<T> {
 
     public LinkedList(T payload) {
         head = new Node(payload);
+        endNode = head;
     }
 
     public boolean isEmpty() {
         return (head == null);
     }
 
-    private Node end() {
+    //entry condition is that head is not null
+    Node end() {
         Node endNode = head;
         while (endNode.getNext() != null) {
             endNode = endNode.getNext();
@@ -59,15 +62,19 @@ public class LinkedList<T> {
     public void insert(T object) {
         Node newNode = new Node(object);
         newNode.setNext(head);
+        if (head == null)
+        {
+            endNode = newNode;
+        }
         head = newNode;
     }
 
     public void append(T object) {
         Node newNode = new Node(object);
-        Node endNode = end();
         if (head == null) {
             head = newNode;
         } else {
+            Node endNode = end();
             end().setNext(newNode);
         }
     }
