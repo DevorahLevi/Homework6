@@ -73,9 +73,10 @@ public class LinkedList<T> {
         Node newNode = new Node(object);
         if (head == null) {
             head = newNode;
+            endNode = newNode;
         } else {
-            Node endNode = end();
-            end().setNext(newNode);
+            endNode.setNext(newNode);
+            endNode = newNode;
         }
     }
 
@@ -106,6 +107,10 @@ public class LinkedList<T> {
                 head  = requestedNode.getNext();
             }
             requestedObject = requestedNode.getPayload();
+            if (n == this.size() - 1)
+            {
+                endNode = beforeRequestedNode;
+            }
         }
         return requestedObject;
     }
