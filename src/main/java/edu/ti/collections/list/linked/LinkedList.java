@@ -107,7 +107,7 @@ public class LinkedList<T> {
                 head  = requestedNode.getNext();
             }
             requestedObject = requestedNode.getPayload();
-            if (n == this.size() - 1)
+            if (requestedNode.getNext() == null)
             {
                 endNode = beforeRequestedNode;
             }
@@ -136,6 +136,10 @@ public class LinkedList<T> {
                 head  = requestedNode.getNext();
             }
             requestedObject = requestedNode.getPayload();
+            if (requestedNode.getNext() == null)
+            {
+                endNode = beforeRequestedNode;
+            }
         }
         return requestedObject;
     }
